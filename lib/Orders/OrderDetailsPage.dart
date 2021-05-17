@@ -19,6 +19,7 @@ class OrderDetails extends StatelessWidget {
  OrderDetails({Key key , this.orderID}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    getOrderId = orderID;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
