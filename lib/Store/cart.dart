@@ -27,7 +27,7 @@ class _CartPageState extends State<CartPage> {
     totalAmount = 0;
     Provider.of<TotalAmount>(context,listen: false).display(0);
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,76 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: Color(0xFF5C4057),
         icon: Icon(Icons.navigate_next),
       ), 
-      appBar: MyAppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: ()
+          {
+            Route route = MaterialPageRoute(builder: (c) => StoreHome());
+            Navigator.pushReplacement(context, route);
+          },
+        ),
+        iconTheme: IconThemeData(
+          color: Color(0xFF5C4057)
+        ),
+        flexibleSpace: Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(
+             colors: [Color(0xFFFDBE3B)],
+             begin: const FractionalOffset(0.0, 0.0),
+             end: const FractionalOffset(1.0,0.0),
+             stops: [0.0, 1.0],
+             tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          "DROP IT",
+          style: TextStyle(fontSize: 55.0, color:Color(0xFF5C4057), fontFamily: "Signatra" ),
+
+        ),
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.shopping_cart,color: Colors.pink,), 
+                onPressed:()
+                {
+                  Route route = MaterialPageRoute(builder: (c) => CartPage());
+                  Navigator.pushReplacement(context, route);
+                },
+             ),
+             Positioned(
+               child: Stack(
+                 children: [
+                   Icon(
+                     Icons.brightness_1,
+                     size: 20.0,
+                      color: Colors.green,
+                    ),
+                    Positioned(
+                      top: 3.0,
+                      bottom: 4.0,
+                      left: 4.0 ,
+                      child: Consumer<CartItemCounter>(
+                        builder: (context,counter, _)
+                        {
+                           return Text(
+                            (DropItApp.sharedPreferences.getStringList(DropItApp.userCartList).length-1).toString(),
+                             style: TextStyle(color: Color(0xFF5C4057), fontSize: 12.0,fontWeight: FontWeight.w500),
+                           );
+                        },
+                      ),
+                    ),
+                  ],
+               ),
+              ),
+            ],
+          ),
+        ],
+      ),
+
       drawer: MyDrawer(),
       body: CustomScrollView(
         slivers: [

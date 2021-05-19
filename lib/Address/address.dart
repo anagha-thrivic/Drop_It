@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Counters/totalMoney.dart';
 import 'package:e_shop/Models/address.dart';
 import 'package:e_shop/Orders//placeOrder.dart';
+import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Widgets/wideButton.dart';
@@ -27,7 +29,75 @@ class _AddressState extends State<Address>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppBar(),
+        appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: ()
+          {
+            Route route = MaterialPageRoute(builder: (c) => CartPage());
+            Navigator.pushReplacement(context, route);
+          },
+        ),
+        iconTheme: IconThemeData(
+          color: Color(0xFF5C4057)
+        ),
+        flexibleSpace: Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(
+             colors: [Color(0xFFFDBE3B)],
+             begin: const FractionalOffset(0.0, 0.0),
+             end: const FractionalOffset(1.0,0.0),
+             stops: [0.0, 1.0],
+             tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          "DROP IT",
+          style: TextStyle(fontSize: 55.0, color:Color(0xFF5C4057), fontFamily: "Signatra" ),
+
+        ),
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.shopping_cart,color: Colors.pink,), 
+                onPressed:()
+                {
+                  Route route = MaterialPageRoute(builder: (c) => CartPage());
+                  Navigator.pushReplacement(context, route);
+                },
+             ),
+             Positioned(
+               child: Stack(
+                 children: [
+                   Icon(
+                     Icons.brightness_1,
+                     size: 20.0,
+                      color: Colors.green,
+                    ),
+                    Positioned(
+                      top: 3.0,
+                      bottom: 4.0,
+                      left: 4.0 ,
+                      child: Consumer<CartItemCounter>(
+                        builder: (context,counter, _)
+                        {
+                           return Text(
+                            (DropItApp.sharedPreferences.getStringList(DropItApp.userCartList).length-1).toString(),
+                             style: TextStyle(color: Color(0xFF5C4057), fontSize: 12.0,fontWeight: FontWeight.w500),
+                           );
+                        },
+                      ),
+                    ),
+                  ],
+               ),
+              ),
+            ],
+          ),
+        ],
+      ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,

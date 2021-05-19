@@ -14,6 +14,9 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+      ),
       iconTheme: IconThemeData(
         color: Color(0xFF5C4057)
       ),

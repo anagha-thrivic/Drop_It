@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/material.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +20,14 @@ class _MyOrdersState extends State<MyOrders> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: ()
+            {
+              Route route = MaterialPageRoute(builder: (c) => StoreHome());
+              Navigator.pushReplacement(context, route);
+            },
+             icon: Icon(Icons.arrow_back),
+          ),
           iconTheme: IconThemeData(color: Colors.white),
           flexibleSpace: Container(
             decoration: new BoxDecoration(
