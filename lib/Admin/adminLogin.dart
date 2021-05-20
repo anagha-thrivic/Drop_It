@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Admin/uploadItems.dart';
+import 'package:e_shop/Admin/adminVeiw.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
@@ -161,7 +161,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
             _adminIDTextEditingController.text = "";
             _passwordTextEditingController.text = "";
           });
-          Route route = MaterialPageRoute(builder: (c) => UploadPage());
+          Route route = MaterialPageRoute(builder: (c) => adminveiw());
           Navigator.pushReplacement(context, route);
         }
       });
