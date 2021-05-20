@@ -100,7 +100,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
                 ],
              ),
            ),
-            RaisedButton(
+            MaterialButton(
              onPressed: () {
                _adminIDTextEditingController.text.isNotEmpty
                 && _passwordTextEditingController.text.isNotEmpty
@@ -128,7 +128,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
            SizedBox(
              height: 20.0,
            ),
-           FlatButton.icon(
+           TextButton.icon(
             onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> AuthenticScreen())),
             icon: (Icon(Icons.nature_people,color:Color(0xFF5C4057),)),
             label: Text("I am not an Admin",style: TextStyle(color: Color(0xFF5C4057),fontWeight: FontWeight.bold),),
