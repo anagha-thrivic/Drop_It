@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Admin/uploadItems.dart';
+import 'package:e_shop/Admin/adminVeiw.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
@@ -100,7 +100,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
                 ],
              ),
            ),
-            RaisedButton(
+            MaterialButton(
              onPressed: () {
                _adminIDTextEditingController.text.isNotEmpty
                 && _passwordTextEditingController.text.isNotEmpty
@@ -128,7 +128,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
            SizedBox(
              height: 20.0,
            ),
-           FlatButton.icon(
+           TextButton.icon(
             onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> AuthenticScreen())),
             icon: (Icon(Icons.nature_people,color:Color(0xFF5C4057),)),
             label: Text("I am not an Admin",style: TextStyle(color: Color(0xFF5C4057),fontWeight: FontWeight.bold),),
@@ -161,7 +161,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
             _adminIDTextEditingController.text = "";
             _passwordTextEditingController.text = "";
           });
-          Route route = MaterialPageRoute(builder: (c) => UploadPage());
+          Route route = MaterialPageRoute(builder: (c) => adminveiw());
           Navigator.pushReplacement(context, route);
         }
       });
